@@ -10,6 +10,9 @@ RUN go build
 ## RUN stage
 FROM scratch
 
-COPY --from=build /app/videos /usr/bin/videos
+WORKDIR /app
 
-CMD ["videos"]
+COPY --from=build /app/videos /app/videos
+COPY --from=build /app/videos.json /app/videos.json
+
+CMD ["./videos"]
