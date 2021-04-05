@@ -6,12 +6,12 @@ import (
 )
 
 type video struct {
-	Id          string
-	Title       string
-	Description string
+	Id          string `json:"id"`
+	Title       string `json:"title"`
+	Description string `json:"description"`
 }
 
-func getVideos() (videos []video) {
+func retrieveVideos() (videos []video) {
 	fileBytes, err := ioutil.ReadFile("./videos.json")
 
 	if err != nil {
