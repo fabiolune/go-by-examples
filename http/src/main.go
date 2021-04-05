@@ -1,9 +1,11 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"net/http"
+)
 
 func main() {
-	videos := getVideos()
-
-	fmt.Println(videos)
+	http.ListenAndServe(":8080", nil)
+	fmt.Print("Hello world")
 }
