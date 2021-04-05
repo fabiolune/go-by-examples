@@ -11,4 +11,5 @@ RUN go build
 FROM scratch
 WORKDIR /app
 COPY --from=build /app/http /app/http
+COPY --from=build /app/videos.json /app/videos.json
 CMD ["./http"]
