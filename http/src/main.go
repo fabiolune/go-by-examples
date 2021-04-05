@@ -6,6 +6,16 @@ import (
 )
 
 func main() {
+
+	http.HandleFunc("/", hello)
 	http.ListenAndServe(":8080", nil)
-	fmt.Print("Hello world")
+}
+
+func hello(w http.ResponseWriter, r *http.Request) {
+
+	for h, value := range r.Header {
+		fmt.Printf("%v:\t\t%v\n", h, value)
+	}
+
+	w.Write([]byte("hello"))
 }
