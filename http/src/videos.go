@@ -34,7 +34,7 @@ func saveVideos(videos []video) {
 		panic(err)
 	}
 
-	ioutil.WriteFile("./videos-updated.json", videoBytes, 0644)
+	err = ioutil.WriteFile("./videos-updated.json", videoBytes, 0644)
 
 	if err != nil {
 		panic(err)
