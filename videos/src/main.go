@@ -3,5 +3,13 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Println(getVideos())
+
+	videos := getVideos()
+
+	for i, video := range videos {
+		videos[i].Description = video.Description + ". Remember to like it"
+	}
+
+	fmt.Println(videos)
+
 }
