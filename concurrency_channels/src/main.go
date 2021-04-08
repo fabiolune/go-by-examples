@@ -6,12 +6,13 @@ import (
 )
 
 func main() {
-	foods := []string{"pizza", "pasta", "noodles", "poke"}
+	foods := []string{"pizza", "pasta", "noodles", "poke", "steak", "fish", "bread"}
 
 	// instantiate the channel
 	results := make(chan bool)
 
-	now := time.Now()
+	startTime := time.Now()
+
 	for _, food := range foods {
 		go func(f string) {
 			cookFood(f)
@@ -25,7 +26,7 @@ func main() {
 		<-results
 	}
 
-	elapsed := time.Since(now)
+	elapsed := time.Since(startTime)
 	fmt.Println("passed", elapsed.Milliseconds(), "ms")
 }
 
