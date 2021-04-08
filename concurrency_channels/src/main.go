@@ -16,13 +16,13 @@ func main() {
 	for _, food := range foods {
 		go func(f string) {
 			cookFood(f)
-			// fill the channel
+			// pass data to the channel
 			results <- true
 		}(food)
 	}
 
 	for i := 0; i < len(foods); i++ {
-		// free the channel
+		// this will block the 'main' goroutine until somethin is pushed into the channel: the receiver is initialized, the sender is defined into the goroutine
 		<-results
 	}
 
