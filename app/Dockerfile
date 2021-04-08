@@ -2,12 +2,15 @@
 FROM golang:1.15 as build
 
 WORKDIR /app
-
 COPY ./src /app/
 RUN go build
 
 
-## RUN enviornment
+## RUN environment
 FROM scratch
-COPY --from=build /app/app /usr/bin/app
-CMD ["app"]
+
+ARG appname
+WORKDIR /app
+COPY --from=build /app/${appname} /app/app
+
+CMD ["./app"]

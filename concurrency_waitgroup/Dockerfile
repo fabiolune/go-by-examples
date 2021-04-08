@@ -7,8 +7,9 @@ COPY ./src /app/
 RUN go build
 
 
-## RUN enviornment
+## RUN environment
 FROM scratch
+ARG appname
 WORKDIR /app
-COPY --from=build /app/concurrency_waitgroup /app/app
+COPY --from=build /app/${appname} /app/app
 CMD ["./app"]
