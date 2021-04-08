@@ -2,7 +2,7 @@
 
 This repo contains some initial experiments with the Go programming language
 
-# Projcect structure
+# Project structure
 
 Every folder contains an example, and all the examples share the same structure:
 
