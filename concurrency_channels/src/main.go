@@ -22,7 +22,7 @@ func main() {
 	}
 
 	for i := 0; i < len(foods); i++ {
-		// this will block the 'main' goroutine until somethin is pushed into the channel: the receiver is initialized, the sender is defined into the goroutine
+		// this will block the 'main' goroutine until something is pushed into the channel: the receiver is initialized, the sender is defined into the goroutine
 		<-results
 	}
 
