@@ -4,6 +4,9 @@ import (
 	"context"
 	"fmt"
 	"math/rand"
+	"os"
+	"os/signal"
+	"syscall"
 	"time"
 )
 
@@ -15,17 +18,27 @@ const (
 
 func main() {
 	rootCtx := context.Background()
+	var cancel context.CancelFunc
+
+	sig := make(chan os.Signal)
+	signal.Notify(sig, os.Interrupt, syscall.SIGTERM)
+	go func() {
+		<-sig
+		fmt.Println("gracefully aborting due to interrupt...")
+		cancel()
+		os.Exit(0)
+	}()
 
 	for i := 0; i < 50; i++ {
-		invokeCancellableGetData(rootCtx)
+		cancel = invokeCancellableGetData(rootCtx)
 	}
-
 }
 
-func invokeCancellableGetData(ctx context.Context) {
+func invokeCancellableGetData(ctx context.Context) context.CancelFunc {
 	ctx, cancel := context.WithTimeout(ctx, time.Duration(maxDuration)*time.Millisecond)
 	defer cancel()
 	fmt.Println(getDataCtxAware(ctx))
+	return cancel
 }
 
 func getDataCtxAware(ctx context.Context) (string, error) {
