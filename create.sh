@@ -33,7 +33,7 @@ FROM scratch
 
 ARG appname
 WORKDIR /app
-COPY --from=build /app/${appname} /app/app
+COPY --from=build /app/\${appname} /app/app
 
 CMD ["./app"]
 EOF
