@@ -1,7 +1,11 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+
+	"github.com/pkg/errors"
+)
 
 func main() {
-	fmt.Println("Hello world from modules")
+	fmt.Println(errors.New("some testing error"))
 }
