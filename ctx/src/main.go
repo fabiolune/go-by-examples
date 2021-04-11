@@ -48,6 +48,7 @@ func getDataCtxAware(ctx context.Context) (string, error) {
 		close(res)
 	}()
 
+	// The for loop runs until one of the two events are detected and the function returns
 	for {
 		select {
 		case dst := <-res:
